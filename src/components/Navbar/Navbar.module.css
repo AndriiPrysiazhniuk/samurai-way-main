@@ -1,0 +1,17 @@
+.nav {
+    width: 150px;
+    padding-left:15px;
+    padding-top:15px;
+    background-color: #61dafb;
+    margin-top:5px;
+    margin-right:5px;
+}
+
+.item {
+    padding: 7px;
+    color: white;
+}
+
+.item.active {
+    color: gold;
+}

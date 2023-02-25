@@ -1,0 +1,18 @@
+.header {
+    display: flex;
+    height: 80px;
+    align-items: center;
+    padding-left: 35px;
+    background-color: #07fc30;
+}
+.headerLogo img{
+    height: 40px;
+    margin-right: 15px;
+    border-radius: 50%;
+}
+.headerLogo span{
+    font-size:27px;
+    font-weight:700;
+    font-family: "Comic Sans MS", sans-serif;
+
+}
