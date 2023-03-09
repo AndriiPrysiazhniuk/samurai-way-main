@@ -1,0 +1,16 @@
+.content {
+    grid-area: c;
+    background-color: greenyellow;
+}
+
+.backImage {
+    width: 100%;
+    height: 400px;
+    margin: 10px;
+}
+
+.avaImage {
+    width: 150px;
+    border-radius: 15px;
+    margin: 10px;
+}

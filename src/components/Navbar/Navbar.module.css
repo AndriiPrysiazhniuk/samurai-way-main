@@ -1,0 +1,14 @@
+.sidebar {
+    grid-area: n;
+    background-color: #c0bbbf;
+    padding: 10px;
+}
+
+.item{
+    color: #003600;
+    padding: 10px;
+    font-weight: 600;
+}
+.item.active{
+    color: gold;
+}

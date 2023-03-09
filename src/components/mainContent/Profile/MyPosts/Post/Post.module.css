@@ -1,0 +1,28 @@
+.item{
+    color:blue;
+display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #c0bbbf;
+    margin: 20px;
+    width: 500px;
+    border-radius:10px
+}
+.messageAva{
+    width: 50px;
+    border-radius: 50%;
+    padding-right: 20px;
+}
+.like{
+    color:blue;
+    font-weight: 700;
+    display: block;
+    margin-left: 20px;
+}
+.dislike{
+    color:red;
+    font-weight: 700;
+    display: block;
+    display: block;
+    margin-left: 20px;
+}
