@@ -4,11 +4,14 @@
     padding: 10px;
 }
 
-.item{
+.item {
     color: #003600;
     padding: 10px;
     font-weight: 600;
 }
-.item.active{
-    color: gold;
+
+
+
+.activeItemClass {
+    color: #e5ef57;
 }

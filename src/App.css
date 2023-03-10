@@ -7,9 +7,20 @@
     grid-template-columns: 2fr 10fr;
     grid-gap: 10px;
     font-size: 18px;
-
+}
+.appWrapperContent{
+    grid-area: c;
+    background-color: greenyellow;
+}
+a{
+    color:#000;
+    text-decoration:none
 }
 
-
-
-
+a.active{
+    color: #b20f09;
+    font-weight: 500;
+}
+li{
+    list-style:none
+}

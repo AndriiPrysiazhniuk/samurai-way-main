@@ -1,0 +1,32 @@
+.content {
+    grid-area: c;
+    background-color: greenyellow;
+}
+
+.dialogsSection{
+display: flex;
+    justify-content:space-between;
+   max-width:600px;
+}
+.dialogsItems{
+    padding-right:60px;
+    background-color: #eeb5b5;
+    /*background-color: #ec928e;*/
+    border: #003600 2px solid;
+
+
+}
+.dialog{
+    padding: 5px;
+}
+.messageSection{
+    padding: 15px;
+    height: max-content;
+    width: max-content;
+}
+.message{
+    background-color: #ec928e;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 15px;
+}
