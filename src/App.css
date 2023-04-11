@@ -8,19 +8,34 @@
     grid-gap: 10px;
     font-size: 18px;
 }
-.appWrapperContent{
+
+.appWrapperContent {
     grid-area: c;
     background-color: greenyellow;
 }
-a{
-    color:#000;
-    text-decoration:none
+
+a {
+    color: #000;
+    text-decoration: none
 }
 
-a.active{
+/*a.active {*/
+/*    color: #b20f09;*/
+/*    font-weight: 500;*/
+/*}*/
+a.active {
     color: #b20f09;
-    font-weight: 500;
 }
-li{
-    list-style:none
+
+li {
+    list-style: none
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
 }

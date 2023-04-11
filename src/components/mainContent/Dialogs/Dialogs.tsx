@@ -1,85 +1,57 @@
-import React from 'react';
+import React, {useState} from 'react';
 import classes from "./Dialogs.module.css";
-import {NavLink} from "react-router-dom";
-import {TextField} from "../../TextField/TextField";
+import {TextField} from "../../../universalComponents/TextField/TextField";
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
+import {v1} from "uuid";
+import {MainPropsType} from "../../../App";
+import {BigBossButton} from "../../../universalComponents/BigBossButton/BigBossButton";
+
+type DialogItemDataType = {
+    id: string
+    name: string
+    src: string
+}
+type MessageStateType = {
+    id: string,
+    sms: string
+}
+type DialogStateType = {
+    MessageState: MessageStateType[]
+    DialogItemState:DialogItemDataType[]
+}
 
 
-export const Dialogs = () => {
-    const DialogItemData = [
-        {
-            id: 1,
-            name: 'Andrii',
-            src: '/Dialogs/Andrii-id'
-        },
-        {
-            id: 2,
-            name: 'Vitalii',
-            src: '/Dialogs/Vitalii-id'
-        },
-        {
-            id: 3,
-            name: 'Sasha',
-            src: '/Dialogs/Sasha-id'
-        },
-        {
-            id: 4,
-            name: 'Serhii',
-            src: '/Dialogs/Serhii-id'
-        },
-        {
-            id: 5,
-            name: 'Liuda',
-            src: '/Dialogs/Liuda-id'
-        },
-        {
-            id: 6,
-            name: 'Natasha',
-            src: '/Dialogs/Natasha-id'
-        },
-        {
-            id: 7,
-            name: 'Arina',
-            src: '/Dialogs/Arina-id'
-        },
-    ]
-
-    const messages = [
-        {
-            id: 1,
-            sms: 'hello, buddy'
-        },
-        {
-            id: 2,
-            sms: 'hello, how is your education at incubator'
-        },
-        {
-            id: 3,
-            sms: 'Yo! I am good'
-        },
-    ]
-
-    const dataItem = DialogItemData.map(el => {
-        let path
+export const Dialogs = (props: DialogStateType) => {
+    const [filterValue, setFilterValue] = useState('')
+    const [messages, setMessages] = useState(props.MessageState)
+    const addMessages = () => {
+        let newMessage = {id: v1(), sms: filterValue}
+        setMessages([...messages, newMessage])
+    }
+    const dataItemMapped = props.DialogItemState.map((el) => {
         return (
-            <DialogItem id={el.id} src={el.src} name={el.name}/>
+            <DialogItem key={el.id} id={el.id} src={el.src} name={el.name}/>
         )
     })
+    const messageItemsMapped=messages.map(el => {
+            return <Message key={el.id} message={el.sms}/>
+        })
+
     return (
         <div className={classes.dialogs}>
-            <h3>Dialogs</h3>
+            <h3 className={classes.dialogsTitle}>Dialogs</h3>
             <div className={classes.dialogsSection}>
                 <ul className={classes.dialogsItems}>
-                    {dataItem}
+                    {dataItemMapped}
                 </ul>
-
                 <div className={classes.messageSection}>
-                    {messages.map(el => {
-                        return <Message key={el.id} message={el.sms}/>
-                    })}
+                    {messageItemsMapped}
 
-                    <div className={classes.sendMessage}><TextField/></div>
+                    <div className={classes.sendMessage}>
+                        <TextField filterValue={filterValue} callback={setFilterValue}/>
+                        <BigBossButton title={'send message'} callback={addMessages}/>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,15 +1,21 @@
 import React from "react";
 import classes from './Header.module.css';
 
-export const Header = () => {
+type headerDataType = {
+    headerData: headerData
+}
+type headerData = {
+    imageSrc: string
+    logoText: string
+}
+export const Header = (props: headerDataType) => {
+
     return (
         <header className={classes.header}>
-            <div>
-                <img className={classes.logoImage} src="https://lh3.googleusercontent.com/ogw/AAEL6sh1y1z3phgTVDjHbh3jAExAz1iOiNDKqWam6iub=s32-c-mo"
-                     alt="lOGO"/>
-                <span>it-incubator</span>
-            </div>
-
+            <img className={classes.logoImage}
+                 src={props.headerData.imageSrc}
+                 alt="lOGO"/>
+            <span>{props.headerData.logoText}</span>
         </header>
     )
 }

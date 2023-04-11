@@ -2,22 +2,26 @@
     grid-area: c;
     background-color: greenyellow;
 }
-
+.dialogs{
+    padding: 30px 30px 50px;
+}
+.dialogsTitle{
+    margin-bottom: 20px;
+}
 .dialogsSection{
 display: flex;
     justify-content:space-between;
    max-width:600px;
 }
 .dialogsItems{
-    padding-right:60px;
+    height: max-content;
+padding: 20px 30px;
     background-color: #eeb5b5;
-    /*background-color: #ec928e;*/
     border: #003600 2px solid;
-
-
 }
 .dialog{
     padding: 5px;
+    /*color:#ec928e;*/
 }
 .messageSection{
     padding: 15px;

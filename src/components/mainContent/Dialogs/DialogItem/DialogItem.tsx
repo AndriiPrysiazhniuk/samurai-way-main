@@ -5,11 +5,12 @@ import React from "react";
 export type PropsType = {
     name: string
     src: string
-    id: number
+    id: string
 }
+
 export const DialogItem = (props: PropsType) => {
     return (
-        <li className={classes.dialog + ' ' + classes.active}>
+        <li  className={classes.dialog + ' ' + classes.active}>
             <NavLink to={props.src + props.id}>{props.name}</NavLink>
         </li>
     )
