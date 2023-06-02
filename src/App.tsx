@@ -6,14 +6,10 @@ import Profile from './components/Profile/Profile';
 
 const App = () => {
   return (
-    <div className = "appWrapper">
+    <div className = "app-wrapper">
         <Header />
-        <div className="appContent">
             <Navbar />
             <Profile title={'Make love not war'}/>
-        </div>
-
-
     </div>
   );
 }
