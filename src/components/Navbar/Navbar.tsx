@@ -1,5 +1,7 @@
 import React from "react";
 import classes from './Navbar.module.css';
+import {NavLink} from "react-router-dom";
+import Profile from "../Profile/Profile";
 
 console.log(classes);
 
@@ -7,19 +9,23 @@ const Navbar = () => {
     return (
         <nav className={classes.nav}>
             <div className={`${classes.item} ${classes.active}`}>
-                <a>Profile</a>
+                <NavLink to={'/profile'}>Profile</NavLink>
             </div>
             <div className={classes.item}>
-                <a>Messages</a>
+                <NavLink to={'dialogs'}>Dialogs</NavLink>
             </div>
             <div className={classes.item}>
-                <a>News</a>
+
+                <NavLink to={'news'}>News</NavLink>
+
             </div>
             <div className={classes.item}>
-                <a>Music</a>
+                <NavLink to={'music'}>Music</NavLink>
+
             </div>
             <div className={classes.item}>
-                <a>Settings</a>
+                <NavLink to={'settings'}>Settings</NavLink>
+
             </div>
         </nav>
     )
