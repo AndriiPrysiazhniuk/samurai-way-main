@@ -1,8 +1,13 @@
 
 .postsSection {
     padding-left: 40px;
+
+
 }
 
 .posts {
+    background-color: #c3c3ff;
     width: max-content;
+    margin-top: 20px;
+    padding:20px 10px;
 }

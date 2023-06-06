@@ -12,20 +12,21 @@ const Navbar = () => {
                 <NavLink to={'/profile'}>Profile</NavLink>
             </div>
             <div className={classes.item}>
-                <NavLink to={'dialogs'}>Dialogs</NavLink>
+                <NavLink to={'/dialogs'}>Dialogs</NavLink>
+            </div>
+            <div className={classes.item}>
+                <NavLink to={'/my-products'}>Products</NavLink>
             </div>
             <div className={classes.item}>
 
-                <NavLink to={'news'}>News</NavLink>
+                <NavLink to={'/news'}>News</NavLink>
 
             </div>
             <div className={classes.item}>
-                <NavLink to={'music'}>Music</NavLink>
-
+                <NavLink to={'/Music'}>Music</NavLink>
             </div>
             <div className={classes.item}>
-                <NavLink to={'settings'}>Settings</NavLink>
-
+                <NavLink to={'/settings'}>Settings</NavLink>
             </div>
         </nav>
     )

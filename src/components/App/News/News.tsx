@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from "News.module.css";
+import classes from "src/components/App/News/News.module.css";
 export const News = () => {
     return (
         <div>

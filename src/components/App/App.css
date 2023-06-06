@@ -1,3 +1,17 @@
+a{
+    color: #000;
+    text-decoration: none;
+}
+input{
+    font-size: 14px;
+    font-weight: 500;
+    color: #020202;
+    background-color: #deb9b9;
+    height: 50px;
+    width: 280px;
+    padding-left: 20px;
+    border-radius: 0px 20px 0px 20px;
+}
 .app-wrapper {
     margin: 0 auto;
     display: grid;
@@ -21,10 +35,10 @@
     height: 300px;
 }
 
-
 .active{
     text-decoration: underline;
-    color: #dafc02;
+    color: #f50808;
+    font-weight: 500;
 }
 
 
