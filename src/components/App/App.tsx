@@ -10,7 +10,7 @@ import {Music} from "./Music/Music";
 import {Settings} from "./Settings/Settings";
 import {News} from "./News/News";
 import MyProducts from "./MyProducts/MyProducts";
-import {PropsDataStateType, updatePostTest} from "../../redux/state/state";
+import {PropsDataStateType, updatePostText} from "../../redux/state/state";
 
 type PropsStateType = {
     state: PropsDataStateType
@@ -31,7 +31,7 @@ export const App = (state: PropsStateType) => {
                 <Route path='/profile'
                        render={() => <Profile
                            newPostValue={state.state.profilePage.newPostValue}
-                           profile={state.state.profilePage} updatePostTest={updatePostTest} addPost={state.addPost}/>}/>
+                           profile={state.state.profilePage} updatePostTest={updatePostText} addPost={state.addPost}/>}/>
                 <Route path='/my-products'
                        render={() => <MyProducts
                            products={state.state.products}/>}/>

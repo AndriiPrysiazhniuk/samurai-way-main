@@ -1,4 +1,3 @@
-import {rerenderEntireTree} from "../../render";
 
 export type PostData = {
     id: number
@@ -37,6 +36,10 @@ export type PropsDataStateType = {
     dialogsPage: DialogsDataPageType
     products: Array<ProductCardType>
     sidebar: SidebarPageDataType
+}
+
+let rerenderEntireTree =(state:any)=>{
+    console.log('State changed')
 }
 export const state: PropsDataStateType = {
     profilePage: {
@@ -133,9 +136,7 @@ export const state: PropsDataStateType = {
     },
     sidebar: {}
 }
-
-
-export let addPost = (postMessage: string) => {
+export const addPost = (postMessage: string) => {
     let newPost = {
         id: 5,
         message: postMessage,
@@ -144,7 +145,12 @@ export let addPost = (postMessage: string) => {
     state.profilePage.posts.unshift(newPost);
     rerenderEntireTree(state);
 }
-export let updatePostTest = (newPostMessage: string) => {
+export  const updatePostText = (newPostMessage: string) => {
     state.profilePage.newPostValue = newPostMessage;
     rerenderEntireTree(state);
+
+}
+export const subsdribe = (callback:any)=>{
+
+rerenderEntireTree = callback
 }
