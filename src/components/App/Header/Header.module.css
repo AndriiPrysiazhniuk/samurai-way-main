@@ -3,14 +3,14 @@
     background-color: #07fc30;
     /*height: 80px;*/
     padding-left: 35px;
+    display: flex;
+    align-items: center;
 }
 
 .headerLogo img {
     height: 40px;
     margin-right: 15px;
     border-radius: 50%;
-
-
 }
 .headerLogo span {
     font-size: 27px;

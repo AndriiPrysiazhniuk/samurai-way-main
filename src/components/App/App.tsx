@@ -1,47 +1,41 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './App.css';
 import Header from './Header/Header';
 import Navbar from './Navbar/Navbar';
-import Profile, {ProfileDateType} from './Profile/Profile';
+import Profile from './Profile/Profile';
 import {Dialogs} from "./Dialogs/Dialogs";
-import {BrowserRouter, Route, Router} from "react-router-dom";
+import {BrowserRouter, Route} from "react-router-dom";
 import {Error404} from "../ErrorPage/Error404";
 import {Music} from "./Music/Music";
 import {Settings} from "./Settings/Settings";
 import {News} from "./News/News";
 import MyProducts from "./MyProducts/MyProducts";
-import {ProductCardType} from "./MyProducts/Product/Product";
+import {PropsDataStateType, updatePostTest} from "../../redux/state/state";
 
-type StateType = {
-    state: StateProfileDateType
+type PropsStateType = {
+    state: PropsDataStateType
+    addPost: (postMessage: string) => void
+    updatePostTest: (newPostMessage: string) => void
 }
-export type StateProfileDateType = {
-    profileDate: ProfileDateType
-    products: Array<ProductCardType>
-}
-const App = ({state}: StateType) => {
 
+export const App = (state: PropsStateType) => {
 
     return (
-        <BrowserRouter>
-            <div className="app-wrapper">
-                <Header/>
-                <Navbar/>
-                <div className='app-wrapper-content'>
+        <div className='app-wrapper'>
+            <Header/>
+            <Navbar/>
+            <div className='app-wrapper-content'>
+                <Route path='/dialogs'
+                       render={() => <Dialogs dialogs={state.state.dialogsPage}/>}/>
 
-                    <Route path={'/profile'} render={() => <Profile postData={state.profileDate.postData}
-                                                                    title={state.profileDate.title}
-                                                                    profileInfoDate={state.profileDate.profileInfoDate}/>}/>
-                    <Route path={'/dialogs'} render={() => <Dialogs/>}/>
-                    <Route path={'/my-products'} render={() => <MyProducts products={state.products}/>}/>
-                    <Route path={'/news'} render={() => <News/>}/>
-                    <Route path={'/music'} render={() => <Music/>}/>
-                    <Route path={'/settings'} render={() => <Settings/>}/>
-                    {/*<Route path={'/*'} render={Error404}/>*/}
-                </div>
+                <Route path='/profile'
+                       render={() => <Profile
+                           newPostValue={state.state.profilePage.newPostValue}
+                           profile={state.state.profilePage} updatePostTest={updatePostTest} addPost={state.addPost}/>}/>
+                <Route path='/my-products'
+                       render={() => <MyProducts
+                           products={state.state.products}/>}/>
             </div>
-        </BrowserRouter>
+        </div>
     );
 }
-
-export default App;

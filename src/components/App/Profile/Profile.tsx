@@ -1,23 +1,21 @@
 import React from "react";
-import classes from './Profile.module.css';
-import {MyPosts, PropsMyPostsType} from "./MyPosts/MyPosts";
-import {ProfileInfo, PropsProfileInfoType} from "./ProfileInfo/ProfileInfo";
-import {PropsPostType} from "./MyPosts/Post/Post";
+import {MyPosts} from "./MyPosts/MyPosts";
+import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
+import {ProfilePageDataType, updatePostTest} from "../../../redux/state/state";
 
-
-
-export type ProfileDateType={
-    postData: PropsPostType[]
-    profileInfoDate: PropsProfileInfoType
-    title: string
+type ProfilePropsType = {
+    profile: ProfilePageDataType
+    addPost: (postMessage: string) => void
+    updatePostTest: (newPostMessage: string) => void
+    newPostValue: string
 }
 
-const Profile = (props: ProfileDateType) => {
+const Profile: React.FC<ProfilePropsType> = ({profile, addPost, newPostValue}) => {
 
     return (
         <div>
-            <ProfileInfo imageSrc={props.profileInfoDate.imageSrc}/>
-            <MyPosts postDate={props.postData} title={props.title}/>
+            <ProfileInfo imageSrc={profile.imageSrc}/>
+            <MyPosts postValue={newPostValue} posts={profile.posts} updatePostTest={updatePostTest} addPost={addPost}/>
         </div>
     )
 }

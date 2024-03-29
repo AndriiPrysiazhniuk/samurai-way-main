@@ -1,38 +1,28 @@
 import React from 'react';
 import classes from './Dialogs.module.css'
-import {NavLink} from "react-router-dom";
+import {DialogsDataPageType} from "../../../redux/state/state";
 import {DialogItem} from "./DialogItem/DialogItem";
 import {DialogMessage} from "./DialogMessage/DialogMessage";
-import {message} from "antd";
 
+type DialogsPropsType = {
+    dialogs: DialogsDataPageType
+}
 
-export const Dialogs = () => {
-
-    const dialogsNamesData = [
-        {id: 1, name: 'Andrii'},
-        {id: 2, name: 'Vitalii'},
-        {id: 3, name: 'Sasha'}
-    ]
-    const dialogsMessagesData = [
-        {id: 1, message: 'Hi'},
-        {id: 2, message: 'How is your it-kamasutra?!'},
-        {id: 3, message: 'Yo!'}
-    ]
-
-    const mappedDialogsName = dialogsNamesData.map(el =>
-        <DialogItem key={el.id} id={el.id} name={el.name}/>
-    )
-    const mappedMessages = dialogsMessagesData.map(el =>
-        <DialogMessage key={el.id} id={el.id} message={el.message}/>
-    )
+export const Dialogs: React.FC<DialogsPropsType> = ({dialogs}) => {
 
     return (
         <div className={classes.dialogs}>
             <div className={classes.dialogsItems}>
-                {mappedDialogsName}
+                {dialogs.dialogs.map(el => {
+                    return <DialogItem name={el.name} id={el.id}/>
+                })}
+                {/*<MappedDialogsName dialogsNamesData={dialogsNamesData}/>*/}
             </div>
             <div className={classes.messages}>
-                {mappedMessages}
+                {dialogs.messages.map(el => {
+                    return <DialogMessage id={el.id} message={el.message}/>
+                })}
+                {/*<MappedMessages dialogsMessagesData={dialogsMessagesData}/>*/}
             </div>
         </div>
     );

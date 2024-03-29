@@ -1,15 +1,10 @@
 import React from 'react';
 import classes from './Product.module.css'
+import {ProductCardType} from "../../../../redux/state/state";
 
-export type ProductCardType = {
-    id: number
-    src: string
-    title: string
-    description: string
-    price: number
-}
 
-export const ProductCard = (props: ProductCardType) => {
+
+export const ProductCard = ({id, price, src, description, title}: ProductCardType) => {
 
 
     return (
@@ -17,8 +12,8 @@ export const ProductCard = (props: ProductCardType) => {
             <button className={classes.del}>delete</button>
             <img
                  src={'https://hk-media.apjonlinecdn.com/catalog/product/cache/b3b166914d87ce343d4dc5ec5117b502/p/r/probook_440_g8_2_.png'}/>
-            <p className={classes.productName}>{props.title}</p>
-            <p className={classes.productDescription}>{props.description}</p>
+            <p className={classes.productName}>{title}</p>
+            <p className={classes.productDescription}>{description}</p>
             <div>
                 <div>
                     <button className={classes.inc}>-</button>
@@ -26,7 +21,7 @@ export const ProductCard = (props: ProductCardType) => {
                     <button className={classes.dec}>+</button>
                 </div>
             </div>
-            <p className={classes.productPrice}>{props.price}</p>
+            <p className={classes.productPrice}>{price}</p>
             <button className={classes.addtoCart} id='test'>ADD TO CART</button>
         </div>
     )

@@ -1,17 +1,17 @@
 import React from "react";
-import classes from "./ProfileInfo.module.css";
 
-export type PropsProfileInfoType = {
-    imageSrc: string
-}
 
-export const ProfileInfo:React.FC<PropsProfileInfoType> = (props: PropsProfileInfoType) => {
-    const {imageSrc} = props
+export const ProfileInfo: React.FC<any> = (props) => {
+
     return (
         <div>
-            <img
-                src={imageSrc}
-                alt="main_picture"/>
+            <div>
+                <img
+                    src={props.imageSrc}/>
+            </div>
+            <div>
+                ava + description
+            </div>
         </div>
     )
 }

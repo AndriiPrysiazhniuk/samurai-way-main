@@ -1,12 +1,12 @@
 import classes from "./DialogMessage.module.css";
 import React from "react";
 
-type PropsType = {
+export type DialogMessagesType = {
     id: number
     message: string
 }
 
-export const DialogMessage: React.FC<PropsType> = (props: PropsType) => {
+export const DialogMessage: React.FC<DialogMessagesType> = (props) => {
     const {id, message} = props
 
     return (

@@ -1,31 +1,51 @@
-import React from 'react';
+import React, {ChangeEvent, createRef, RefObject} from 'react';
 import classes from "./MyPosts.module.css";
 // import {Post, PropsPostType} from "./Post/Post";
 import {TextField} from "../../../TextField/TextField";
-import {Post, PropsPostType} from "./Post/Post";
+import {Post} from "./Post/Post";
+import {PostData} from "../../../../redux/state/state";
 
 
-export type PropsMyPostsType = {
-    title: string
-    postDate: PropsPostType[]
-
+type MyPostsPropsType = {
+    posts: Array<PostData>
+    addPost: (postMessage: string) => void
+    updatePostTest: (newPostMessage: string) => void
+    postValue: string
 }
 
+export const MyPosts: React.FC<MyPostsPropsType> = ({posts,  addPost,updatePostTest, postValue}) => {
 
-export const MyPosts = ({postDate, title}: PropsMyPostsType) => {
+    // const mappedPosts = posts.map(el => {
+    //     return <Post key={el.id} id={el.id} likesCount={el.likesCount} message={el.message}/>
+    // })
 
-    const mappedPosts = postDate.map(el =>
-        <Post key={el.id} id={el.id} message={el.message}/>)
+    const newPost: RefObject<any> = createRef()
+
+    const addPostHandler = () => {
+        addPost(newPost.current.value)
+
+        updatePostTest('')
+    }
+    const onChangeHandler = (e:ChangeEvent<HTMLTextAreaElement> ) => {
+        updatePostTest(e.currentTarget.value)
+    }
+
     return (
-        <div className={classes.postsSection}>
-            <h3>
-                {title}
-            </h3>
+        <div>
+            <h3>My posts</h3>
             <div>
-                <TextField/>
-                <button>+</button>
+                <div>
+                    <textarea onChange={onChangeHandler} ref={newPost}  value={postValue}/>
+                </div>
+                <div>
+                    <button onClick={addPostHandler}>Add post</button>
+                </div>
             </div>
-            <div className={classes.posts}>{mappedPosts}</div>
+            <div>
+                {posts.map(el => {
+                    return <Post key={el.id} id={el.id} likesCount={el.likesCount} message={el.message}/>
+                })}
+            </div>
         </div>
     );
 };

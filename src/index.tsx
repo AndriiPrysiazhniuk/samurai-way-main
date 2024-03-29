@@ -1,10 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './components/App/App';
-import {state} from "./redux/state/state";
+import {addPost, state, updatePostTest} from "./redux/state/state";
+import {BrowserRouter} from "react-router-dom";
+import {App} from './components/App/App';
 
-ReactDOM.render(
-    <App state={state}/>,
-  document.getElementById('root')
-);
+ const rerenderEntireTree = () => {
+    ReactDOM.render(
+        <BrowserRouter>
+            <App state={state} updatePostTest={updatePostTest} addPost={addPost}/>
+        </BrowserRouter>, document.getElementById('root')
+    );
+}

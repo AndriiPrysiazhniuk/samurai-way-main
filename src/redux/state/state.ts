@@ -1,17 +1,53 @@
-import {StateProfileDateType} from "../../components/App/App";
+import {rerenderEntireTree} from "../../render";
 
+export type PostData = {
+    id: number
+    message: string
+    likesCount: number
+}
+type DialogsData = {
+    id: number
+    name: string
+}
+type MessagesData = {
+    id: number
+    message: string
+}
+export type DialogsDataPageType = {
+    dialogs: Array<DialogsData>
+    messages: Array<MessagesData>
+}
+export type ProfilePageDataType = {
+    posts: Array<PostData>
+    imageSrc: string
+    newPostValue: string
+}
+export type ProductCardType = {
+    id: number
+    src: string
+    title: string
+    description: string
+    price: number
+}
 
-export const state: StateProfileDateType = {
-    profileDate: {
-        postData: [
-            {id: 1, message: 'Yo, how are you doing buddy'},
-            {id: 2, message: 'That`s a great post =)'},
-            {id: 3, message: 'Welcome to the club!'},
+type SidebarPageDataType = {}
+
+export type PropsDataStateType = {
+    profilePage: ProfilePageDataType
+    dialogsPage: DialogsDataPageType
+    products: Array<ProductCardType>
+    sidebar: SidebarPageDataType
+}
+export const state: PropsDataStateType = {
+    profilePage: {
+        posts: [
+            {id: 1, message: 'Hi, how are you?', likesCount: 12},
+            {id: 2, message: 'It\'s my first post', likesCount: 11},
+            {id: 3, message: 'Blabla', likesCount: 11},
+            {id: 4, message: 'Dada', likesCount: 11}
         ],
-        profileInfoDate: {
-            imageSrc: "https://media.istockphoto.com/id/1040225712/photo/empty-parking-lot.jpg?s=612x612&w=0&k=20&c=vg4LfHYGSCCAsFj4SHafztn1rsaKqVEyDMEiBpVro1E="
-        },
-        title: 'Any titie',
+        imageSrc: 'https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&h=350',
+        newPostValue: 'it-kamasutra'
     },
     products: [
         {
@@ -77,5 +113,38 @@ export const state: StateProfileDateType = {
             description: 'The latest from a long line of affordable premium devices by Oneplus',
             price: 799
         }
-    ]
+    ],
+    dialogsPage: {
+        dialogs: [
+            {id: 1, name: 'Dimych'},
+            {id: 2, name: 'Andrew'},
+            {id: 3, name: 'Sveta'},
+            {id: 4, name: 'Sasha'},
+            {id: 5, name: 'Viktor'},
+            {id: 6, name: 'Valera'}
+        ],
+        messages: [
+            {id: 1, message: 'Hi'},
+            {id: 2, message: 'How is your it-kamasutra?'},
+            {id: 3, message: 'Yo'},
+            {id: 4, message: 'Yo'},
+            {id: 5, message: 'Yo'}
+        ]
+    },
+    sidebar: {}
+}
+
+
+export let addPost = (postMessage: string) => {
+    let newPost = {
+        id: 5,
+        message: postMessage,
+        likesCount: 0
+    };
+    state.profilePage.posts.unshift(newPost);
+    rerenderEntireTree(state);
+}
+export let updatePostTest = (newPostMessage: string) => {
+    state.profilePage.newPostValue = newPostMessage;
+    rerenderEntireTree(state);
 }

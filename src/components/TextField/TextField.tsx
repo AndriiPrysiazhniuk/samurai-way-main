@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {RefObject} from 'react';
 
-export const TextField = () => {
+type PropsInputType = {
+    value: RefObject<any>
+}
+export const TextField = ({value}: PropsInputType) => {
     return (
-
-            <input/>
+        <input ref={value}/>
     );
 };
 

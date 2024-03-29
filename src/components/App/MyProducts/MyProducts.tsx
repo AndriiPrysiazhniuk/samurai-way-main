@@ -1,6 +1,8 @@
-import React, {useState} from 'react';
-import {ProductCard, ProductCardType} from "./Product/Product";
+import React from 'react';
+import {ProductCard} from "./Product/Product";
 import classes from "./MyProducts.module.css";
+import {ProductCardType} from "../../../redux/state/state";
+
 type ProductsType = {
     products: Array<ProductCardType>
 }
