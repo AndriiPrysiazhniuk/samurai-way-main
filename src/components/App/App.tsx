@@ -30,8 +30,8 @@ export const App = (state: PropsStateType) => {
                 <Route path='/profile'
                        render={() => <Profile
                            newPostValue={store._state.profilePage.newPostText}
-                           profile={store._state.profilePage} updatePostText={store.updatePostText}
-                           addPost={store.addPost}/>}/>
+                           profile={store._state.profilePage} updatePostText={store.updatePostText.bind(store)}
+                           addPost={store.addPost.bind(store)}/>}/>
                 <Route path='/my-products'
                        render={() => <MyProducts
                            products={store._state.products}/>}/>
