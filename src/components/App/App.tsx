@@ -10,12 +10,12 @@ import {Music} from "./Music/Music";
 import {Settings} from "./Settings/Settings";
 import {News} from "./News/News";
 import MyProducts from "./MyProducts/MyProducts";
-import {PropsDataStateType, updatePostText} from "../../redux/state/state";
+import {PropsDataStateType, store} from "../../redux/state/state";
 
 type PropsStateType = {
     state: PropsDataStateType
     addPost: (postMessage: string) => void
-    updatePostTest: (newPostMessage: string) => void
+    updatePostText: (newPostMessage: string) => void
 }
 
 export const App = (state: PropsStateType) => {
@@ -26,15 +26,15 @@ export const App = (state: PropsStateType) => {
             <Navbar/>
             <div className='app-wrapper-content'>
                 <Route path='/dialogs'
-                       render={() => <Dialogs dialogs={state.state.dialogsPage}/>}/>
-
+                       render={() => <Dialogs dialogs={store._state.dialogsPage}/>}/>
                 <Route path='/profile'
                        render={() => <Profile
-                           newPostValue={state.state.profilePage.newPostValue}
-                           profile={state.state.profilePage} updatePostTest={updatePostText} addPost={state.addPost}/>}/>
+                           newPostValue={store._state.profilePage.newPostText}
+                           profile={store._state.profilePage} updatePostText={store.updatePostText}
+                           addPost={store.addPost}/>}/>
                 <Route path='/my-products'
                        render={() => <MyProducts
-                           products={state.state.products}/>}/>
+                           products={store._state.products}/>}/>
             </div>
         </div>
     );
