@@ -8,10 +8,10 @@ import {App} from './components/App/App';
 const rerenderEntireTree = (state: PropsDataStateType) => {
     ReactDOM.render(
         <BrowserRouter>
-            <App state={store.getState()} updatePostText={store.updatePostText} addPost={store.addPost}/>
+            <App state={state} dispatch={store.dispatch.bind(store)}/>
         </BrowserRouter>, document.getElementById('root')
     );
 }
 
-rerenderEntireTree(store._state)
-store.subsdribe(rerenderEntireTree)
+rerenderEntireTree(store.getState())
+store.subscribe(rerenderEntireTree)

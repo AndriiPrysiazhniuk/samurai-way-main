@@ -5,17 +5,16 @@ import {ProfilePageDataType} from "../../../redux/state/state";
 
 type ProfilePropsType = {
     profile: ProfilePageDataType
-    addPost: (postMessage: string) => void
-    updatePostText: (newPostMessage: string) => void
+   dispatch:(action:any)=>void
     newPostValue: string
 }
 
-const Profile: React.FC<ProfilePropsType> = ({profile, addPost, newPostValue, updatePostText}) => {
+const Profile: React.FC<ProfilePropsType> = ({profile,  newPostValue,dispatch}) => {
 
     return (
         <div>
             <ProfileInfo imageSrc={profile.imageSrc}/>
-            <MyPosts postValue={newPostValue} posts={profile.posts} updatePostTest={updatePostText} addPost={addPost}/>
+            <MyPosts postValue={newPostValue} posts={profile.posts} dispatch={dispatch}/>
         </div>
     )
 }

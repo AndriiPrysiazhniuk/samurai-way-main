@@ -14,11 +14,10 @@ import {PropsDataStateType, store} from "../../redux/state/state";
 
 type PropsStateType = {
     state: PropsDataStateType
-    addPost: (postMessage: string) => void
-    updatePostText: (newPostMessage: string) => void
+  dispatch:(action:any)=>void
 }
 
-export const App = (state: PropsStateType) => {
+export const App = ({state, dispatch}: PropsStateType) => {
 
     return (
         <div className='app-wrapper'>
@@ -29,9 +28,9 @@ export const App = (state: PropsStateType) => {
                        render={() => <Dialogs dialogs={store._state.dialogsPage}/>}/>
                 <Route path='/profile'
                        render={() => <Profile
-                           newPostValue={store._state.profilePage.newPostText}
-                           profile={store._state.profilePage} updatePostText={store.updatePostText.bind(store)}
-                           addPost={store.addPost.bind(store)}/>}/>
+                           newPostValue={state.profilePage.newPostText}
+                           profile={state.profilePage}
+                           dispatch={dispatch}/>}/>
                 <Route path='/my-products'
                        render={() => <MyProducts
                            products={store._state.products}/>}/>

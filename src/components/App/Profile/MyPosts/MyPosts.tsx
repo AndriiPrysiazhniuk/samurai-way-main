@@ -8,12 +8,11 @@ import {PostData} from "../../../../redux/state/state";
 
 type MyPostsPropsType = {
     posts: Array<PostData>
-    addPost: (postMessage: string) => void
-    updatePostTest: (newPostMessage: string) => void
+    dispatch: (action: any) => void
     postValue: string
 }
 
-export const MyPosts: React.FC<MyPostsPropsType> = ({posts,  addPost,updatePostTest, postValue}) => {
+export const MyPosts: React.FC<MyPostsPropsType> = ({posts, dispatch, postValue}) => {
 
     // const mappedPosts = posts.map(el => {
     //     return <Post key={el.id} id={el.id} likesCount={el.likesCount} message={el.message}/>
@@ -22,12 +21,12 @@ export const MyPosts: React.FC<MyPostsPropsType> = ({posts,  addPost,updatePostT
     const newPost: RefObject<any> = createRef()
 
     const addPostHandler = () => {
-        addPost(newPost.current.value)
-
-        updatePostTest('')
+        dispatch({type: 'ADD-POST'})
     }
-    const onChangeHandler = (e:ChangeEvent<HTMLTextAreaElement> ) => {
-        updatePostTest(e.currentTarget.value)
+    const onChangeHandler = () => {
+        const text = newPost.current.value
+        const action = {type: 'UPDATE-POST-TEXT', newPostMessage: text};
+        dispatch(action)
     }
 
     return (
@@ -35,7 +34,7 @@ export const MyPosts: React.FC<MyPostsPropsType> = ({posts,  addPost,updatePostT
             <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea onChange={onChangeHandler} ref={newPost}  value={postValue}/>
+                    <textarea onChange={onChangeHandler} ref={newPost} value={postValue}/>
                 </div>
                 <div>
                     <button onClick={addPostHandler}>Add post</button>

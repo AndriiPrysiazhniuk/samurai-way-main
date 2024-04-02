@@ -140,24 +140,24 @@ export const store = {
     _callSubscriber(state: PropsDataStateType) {
         console.log('State changed')
     },
-    addPost() {
-        debugger
-        let newPost = {
-            id: 5,
-            message: this._state.profilePage.newPostText,
-            likesCount: 0
-        };
-
-        this._state.profilePage.posts.unshift(newPost);
-
-        this._callSubscriber(this._state);
-    },
-    updatePostText(newPostMessage: string) {
-        this._state.profilePage.newPostText = newPostMessage;
-        this._callSubscriber(this._state);
-
-    },
-    subsdribe(observer: (state: PropsDataStateType) => void) {
+    subscribe(observer: (state: PropsDataStateType) => void) {
         this._callSubscriber = observer
+    },
+    dispatch(action: any) {
+
+        if (action.type === 'ADD-POST') {
+            let newPost = {
+                id: 5,
+                message: this._state.profilePage.newPostText,
+                likesCount: 0
+            };
+            this._state.profilePage.posts.unshift(newPost);
+            this._state.profilePage.newPostText = ''
+            this._callSubscriber(this._state);
+        } else if (action.type === 'UPDATE-POST-TEXT') {
+            this._state.profilePage.newPostText = action.newPostMessage;
+            this._callSubscriber(this._state);
+        }
+
     }
 }
