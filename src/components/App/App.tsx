@@ -10,7 +10,7 @@ import {Music} from "./Music/Music";
 import {Settings} from "./Settings/Settings";
 import {News} from "./News/News";
 import MyProducts from "./MyProducts/MyProducts";
-import {ActionsType, PropsDataStateType, store} from "../../redux/state/state";
+import {ActionsType, PropsDataStateType} from "../../redux/state/state";
 
 type PropsStateType = {
     state: PropsDataStateType
@@ -25,7 +25,7 @@ export const App = ({state, dispatch}: PropsStateType) => {
             <Navbar/>
             <div className='app-wrapper-content'>
                 <Route path='/dialogs'
-                       render={() => <Dialogs dialogs={store._state.dialogsPage} dispatch={dispatch}/>}/>
+                       render={() => <Dialogs dialogs={state.dialogsPage} dispatch={dispatch}/>}/>
                 <Route path='/profile'
                        render={() => <Profile
                            newPostValue={state.profilePage.newPostText}
@@ -33,7 +33,7 @@ export const App = ({state, dispatch}: PropsStateType) => {
                            dispatch={dispatch}/>}/>
                 <Route path='/my-products'
                        render={() => <MyProducts
-                           products={store._state.products}/>}/>
+                           products={state.products}/>}/>
             </div>
         </div>
     );

@@ -1,10 +1,10 @@
-import React, {createRef, RefObject} from 'react';
+import React, {ChangeEvent, createRef, RefObject} from 'react';
 import classes from './Dialogs.module.css'
 import {
     ActionsType,
     addMessageAC,
     addPostAC,
-    DialogsDataPageType,
+    DialogsDataPageType, GlobalStoreType,
     updateMessageTextAC,
     updatePostTextAC
 } from "../../../redux/state/state";
@@ -18,14 +18,16 @@ type DialogsPropsType = {
 }
 
 export const Dialogs: React.FC<DialogsPropsType> = ({dialogs, dispatch}) => {
-    const newMessage: RefObject<any> = createRef()
+
     const addNewMessageHandler = () => {
         dispatch(addMessageAC())
     }
-    const onChangeHandler = () => {
-        const message = newMessage.current.value
-        dispatch(updateMessageTextAC(message))
+    const onChangeHandler = (e:ChangeEvent<HTMLTextAreaElement>) => {
+
+        dispatch(updateMessageTextAC(e.target.value))
+        console.log(e.target.value)
     }
+
     return (
         <div className={classes.dialogs}>
             <div className={classes.dialogsItems}>
@@ -38,9 +40,11 @@ export const Dialogs: React.FC<DialogsPropsType> = ({dialogs, dispatch}) => {
                 {dialogs.messages.map(el => {
                     return <DialogMessage id={el.id} message={el.message}/>
                 })}
-
                 <div>
-                    <textarea onChange={onChangeHandler} ref={newMessage} value={dialogs.dialogsMessage}/>
+                    <textarea
+                        value={dialogs.dialogsMessage}
+                        onChange={onChangeHandler}
+                    />
                     <button onClick={addNewMessageHandler}>add Message</button>
                 </div>
                 {/*<MappedMessages dialogsMessagesData={dialogsMessagesData}/>*/}

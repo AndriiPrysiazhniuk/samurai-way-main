@@ -43,7 +43,14 @@ export type ActionsType =
     | ReturnType<typeof addMessageAC>
     | ReturnType<typeof updateMessageTextAC>
 
-export const store = {
+export type GlobalStoreType = {
+    _state: PropsDataStateType
+    getState: () => void
+    _callSubscriber: (state: PropsDataStateType) => void
+    subscribe: (observer: (state: PropsDataStateType) => void) => void
+    dispatch: (action: ActionsType) => void
+}
+export const store:GlobalStoreType = {
     _state: {
         profilePage: {
             posts: [
@@ -139,7 +146,7 @@ export const store = {
             dialogsMessage: 'Send new message'
         } as DialogsDataPageType,
         sidebar: {} as SidebarPageDataType
-    } as PropsDataStateType,
+    },
     getState() {
         return this._state
     },
@@ -170,12 +177,13 @@ export const store = {
             this._state.dialogsPage.messages.push(myMessage)
             this._state.dialogsPage.dialogsMessage = ''
             this._callSubscriber(this._state);
-        }else if (action.type === 'UPDATE-MESSAGE-TEXT') {
+        } else if (action.type === 'UPDATE-MESSAGE-TEXT') {
             this._state.dialogsPage.dialogsMessage = action.newMessageText;
             this._callSubscriber(this._state);
         }
     }
 }
+
 export const addPostAC = () => ({type: 'ADD-POST'} as const)
 
 export const updatePostTextAC = (newPostMessage: string) => ({type: 'UPDATE-POST-TEXT', newPostMessage} as const)

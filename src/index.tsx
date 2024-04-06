@@ -13,5 +13,5 @@ const rerenderEntireTree = (state: PropsDataStateType) => {
     );
 }
 
-rerenderEntireTree(store.getState())
+rerenderEntireTree(store._state)
 store.subscribe(rerenderEntireTree)
