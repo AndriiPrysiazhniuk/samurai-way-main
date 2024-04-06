@@ -14,6 +14,7 @@ type MessagesData = {
 export type DialogsDataPageType = {
     dialogs: Array<DialogsData>
     messages: Array<MessagesData>
+    dialogsMessage: string
 }
 export type ProfilePageDataType = {
     posts: Array<PostData>
@@ -36,7 +37,11 @@ export type PropsDataStateType = {
     products: Array<ProductCardType>
     sidebar: SidebarPageDataType
 }
-
+export type ActionsType =
+    ReturnType<typeof addPostAC>
+    | ReturnType<typeof updatePostTextAC>
+    | ReturnType<typeof addMessageAC>
+    | ReturnType<typeof updateMessageTextAC>
 
 export const store = {
     _state: {
@@ -130,7 +135,8 @@ export const store = {
                 {id: 3, message: 'Yo'},
                 {id: 4, message: 'Yo'},
                 {id: 5, message: 'Yo'}
-            ]
+            ],
+            dialogsMessage: 'Send new message'
         } as DialogsDataPageType,
         sidebar: {} as SidebarPageDataType
     } as PropsDataStateType,
@@ -143,21 +149,37 @@ export const store = {
     subscribe(observer: (state: PropsDataStateType) => void) {
         this._callSubscriber = observer
     },
-    dispatch(action: any) {
-
+    dispatch(action: ActionsType) {
         if (action.type === 'ADD-POST') {
             let newPost = {
                 id: 5,
                 message: this._state.profilePage.newPostText,
                 likesCount: 0
-            };
+            } as PostData
             this._state.profilePage.posts.unshift(newPost);
             this._state.profilePage.newPostText = ''
             this._callSubscriber(this._state);
         } else if (action.type === 'UPDATE-POST-TEXT') {
             this._state.profilePage.newPostText = action.newPostMessage;
             this._callSubscriber(this._state);
+        } else if (action.type === 'ADD-MESSAGE') {
+            const myMessage = {
+                id: 6,
+                message: this._state.dialogsPage.dialogsMessage
+            } as MessagesData
+            this._state.dialogsPage.messages.push(myMessage)
+            this._state.dialogsPage.dialogsMessage = ''
+            this._callSubscriber(this._state);
+        }else if (action.type === 'UPDATE-MESSAGE-TEXT') {
+            this._state.dialogsPage.dialogsMessage = action.newMessageText;
+            this._callSubscriber(this._state);
         }
-
     }
 }
+export const addPostAC = () => ({type: 'ADD-POST'} as const)
+
+export const updatePostTextAC = (newPostMessage: string) => ({type: 'UPDATE-POST-TEXT', newPostMessage} as const)
+
+export const addMessageAC = () => ({type: 'ADD-MESSAGE'} as const)
+
+export const updateMessageTextAC = (newMessageText: string) => ({type: 'UPDATE-MESSAGE-TEXT', newMessageText} as const)

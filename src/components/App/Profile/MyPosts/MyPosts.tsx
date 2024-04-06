@@ -3,12 +3,12 @@ import classes from "./MyPosts.module.css";
 // import {Post, PropsPostType} from "./Post/Post";
 import {TextField} from "../../../TextField/TextField";
 import {Post} from "./Post/Post";
-import {PostData} from "../../../../redux/state/state";
+import {ActionsType, addPostAC, PostData, updatePostTextAC} from "../../../../redux/state/state";
 
 
 type MyPostsPropsType = {
     posts: Array<PostData>
-    dispatch: (action: any) => void
+    dispatch: (action: ActionsType) => void
     postValue: string
 }
 
@@ -21,12 +21,11 @@ export const MyPosts: React.FC<MyPostsPropsType> = ({posts, dispatch, postValue}
     const newPost: RefObject<any> = createRef()
 
     const addPostHandler = () => {
-        dispatch({type: 'ADD-POST'})
+        dispatch(addPostAC())
     }
     const onChangeHandler = () => {
         const text = newPost.current.value
-        const action = {type: 'UPDATE-POST-TEXT', newPostMessage: text};
-        dispatch(action)
+        dispatch(updatePostTextAC(text))
     }
 
     return (

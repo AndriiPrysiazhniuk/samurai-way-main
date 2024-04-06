@@ -1,11 +1,11 @@
 import React from "react";
 import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import {ProfilePageDataType} from "../../../redux/state/state";
+import {ActionsType, ProfilePageDataType} from "../../../redux/state/state";
 
 type ProfilePropsType = {
     profile: ProfilePageDataType
-   dispatch:(action:any)=>void
+   dispatch:(action:ActionsType)=>void
     newPostValue: string
 }
 

@@ -10,11 +10,11 @@ import {Music} from "./Music/Music";
 import {Settings} from "./Settings/Settings";
 import {News} from "./News/News";
 import MyProducts from "./MyProducts/MyProducts";
-import {PropsDataStateType, store} from "../../redux/state/state";
+import {ActionsType, PropsDataStateType, store} from "../../redux/state/state";
 
 type PropsStateType = {
     state: PropsDataStateType
-  dispatch:(action:any)=>void
+  dispatch:(action:ActionsType)=>void
 }
 
 export const App = ({state, dispatch}: PropsStateType) => {
@@ -25,7 +25,7 @@ export const App = ({state, dispatch}: PropsStateType) => {
             <Navbar/>
             <div className='app-wrapper-content'>
                 <Route path='/dialogs'
-                       render={() => <Dialogs dialogs={store._state.dialogsPage}/>}/>
+                       render={() => <Dialogs dialogs={store._state.dialogsPage} dispatch={dispatch}/>}/>
                 <Route path='/profile'
                        render={() => <Profile
                            newPostValue={state.profilePage.newPostText}
