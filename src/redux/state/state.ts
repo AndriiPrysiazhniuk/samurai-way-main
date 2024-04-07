@@ -1,3 +1,7 @@
+import {profileReducer} from "../reducers/profileReducer";
+import {dialogsReducer} from "../reducers/dialogsReducer";
+import {sidebarReducer} from "../reducers/sidebarReducer";
+
 export type PostData = {
     id: number
     message: string
@@ -50,7 +54,7 @@ export type GlobalStoreType = {
     subscribe: (observer: (state: PropsDataStateType) => void) => void
     dispatch: (action: ActionsType) => void
 }
-export const store:GlobalStoreType = {
+export const store: GlobalStoreType = {
     _state: {
         profilePage: {
             posts: [
@@ -157,30 +161,10 @@ export const store:GlobalStoreType = {
         this._callSubscriber = observer
     },
     dispatch(action: ActionsType) {
-        if (action.type === 'ADD-POST') {
-            let newPost = {
-                id: 5,
-                message: this._state.profilePage.newPostText,
-                likesCount: 0
-            } as PostData
-            this._state.profilePage.posts.unshift(newPost);
-            this._state.profilePage.newPostText = ''
-            this._callSubscriber(this._state);
-        } else if (action.type === 'UPDATE-POST-TEXT') {
-            this._state.profilePage.newPostText = action.newPostMessage;
-            this._callSubscriber(this._state);
-        } else if (action.type === 'ADD-MESSAGE') {
-            const myMessage = {
-                id: 6,
-                message: this._state.dialogsPage.dialogsMessage
-            } as MessagesData
-            this._state.dialogsPage.messages.push(myMessage)
-            this._state.dialogsPage.dialogsMessage = ''
-            this._callSubscriber(this._state);
-        } else if (action.type === 'UPDATE-MESSAGE-TEXT') {
-            this._state.dialogsPage.dialogsMessage = action.newMessageText;
-            this._callSubscriber(this._state);
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action)
+        this._callSubscriber(this._state)
     }
 }
 

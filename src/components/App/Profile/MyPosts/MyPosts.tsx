@@ -21,9 +21,11 @@ export const MyPosts: React.FC<MyPostsPropsType> = ({posts, dispatch, postValue}
     const newPost: RefObject<any> = createRef()
 
     const addPostHandler = () => {
+
         dispatch(addPostAC())
     }
     const onChangeHandler = () => {
+
         const text = newPost.current.value
         dispatch(updatePostTextAC(text))
     }
