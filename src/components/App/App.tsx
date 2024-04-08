@@ -3,37 +3,30 @@ import './App.css';
 import Header from './Header/Header';
 import Navbar from './Navbar/Navbar';
 import Profile from './Profile/Profile';
-import {Dialogs} from "./Dialogs/Dialogs";
-import {BrowserRouter, Route} from "react-router-dom";
-import {Error404} from "../ErrorPage/Error404";
-import {Music} from "./Music/Music";
-import {Settings} from "./Settings/Settings";
-import {News} from "./News/News";
+import {Route} from "react-router-dom";
 import MyProducts from "./MyProducts/MyProducts";
-import {ActionsType, PropsDataStateType} from "../../redux/state/state";
+import {ActionsType} from "../../redux/state/store";
+import {AppRootStateType} from "./../../redux/state/redux-store";
+import {DialogsContainer} from "./dialogsContainer/DialogsContainer";
 
 type PropsStateType = {
-    state: PropsDataStateType
-  dispatch:(action:ActionsType)=>void
+    state: AppRootStateType
+    dispatch: (action: ActionsType) => void
 }
-
-export const App = ({state, dispatch}: PropsStateType) => {
-
+export const App = () => {
     return (
+
         <div className='app-wrapper'>
             <Header/>
             <Navbar/>
             <div className='app-wrapper-content'>
-                <Route path='/dialogs'
-                       render={() => <Dialogs dialogs={state.dialogsPage} dispatch={dispatch}/>}/>
-                <Route path='/profile'
-                       render={() => <Profile
-                           newPostValue={state.profilePage.newPostText}
-                           profile={state.profilePage}
-                           dispatch={dispatch}/>}/>
                 <Route path='/my-products'
-                       render={() => <MyProducts
-                           products={state.products}/>}/>
+                       render={() => <MyProducts/>}/>
+                <Route path='/dialogs'
+                       render={() => <DialogsContainer/>}/>
+                <Route path='/profile'
+                       render={() => <Profile/>}/>
+
             </div>
         </div>
     );

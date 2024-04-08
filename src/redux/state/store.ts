@@ -33,7 +33,7 @@ export type ProductCardType = {
     price: number
 }
 
-type SidebarPageDataType = {}
+export type SidebarPageDataType = {}
 
 export type PropsDataStateType = {
     profilePage: ProfilePageDataType

@@ -1,13 +1,13 @@
 import React from 'react';
 import {ProductCard} from "./Product/Product";
 import classes from "./MyProducts.module.css";
-import {ProductCardType} from "../../../redux/state/state";
+import {ProductCardType} from "../../../redux/state/store";
 
 type ProductsType = {
     products: Array<ProductCardType>
 }
 
-const MyProducts: React.FC<ProductsType> = ({products}: ProductsType) => {
+const MyProducts: React.FC<any> = ({products}: ProductsType) => {
 
     const mappedProductCards: JSX.Element[] = products.map(el =>
         <ProductCard key={el.id}

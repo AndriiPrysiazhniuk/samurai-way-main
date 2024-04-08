@@ -1,6 +1,6 @@
 import {NavLink} from "react-router-dom";
 import React from "react";
-import classes from "../../News/News.module.css";
+import classes from "../../../News/News.module.css";
 
 export type DialogNamesType = {
     name: string

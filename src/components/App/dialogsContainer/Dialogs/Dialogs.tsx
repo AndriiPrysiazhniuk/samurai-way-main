@@ -1,31 +1,24 @@
-import React, {ChangeEvent, createRef, RefObject} from 'react';
+import React, {ChangeEvent} from 'react';
 import classes from './Dialogs.module.css'
 import {
-    ActionsType,
-    addMessageAC,
-    addPostAC,
-    DialogsDataPageType, GlobalStoreType,
-    updateMessageTextAC,
-    updatePostTextAC
-} from "../../../redux/state/state";
-import {DialogItem} from "./DialogItem/DialogItem";
-import {DialogMessage} from "./DialogMessage/DialogMessage";
-import {TextField} from "../../TextField/TextField";
+    DialogsDataPageType,
+} from "../../../../redux/state/store";
+import {DialogItem} from "../Dialogs/DialogItem/DialogItem";
+import {DialogMessage} from "../Dialogs/DialogMessage/DialogMessage";
 
 type DialogsPropsType = {
     dialogs: DialogsDataPageType
-    dispatch: (action: ActionsType) => void
+    addMessage: () => void
+    updateMessageText: (message: string) => void
 }
 
-export const Dialogs: React.FC<DialogsPropsType> = ({dialogs, dispatch}) => {
+export const Dialogs: React.FC<DialogsPropsType> = ({dialogs, updateMessageText, addMessage}) => {
 
     const addNewMessageHandler = () => {
-        dispatch(addMessageAC())
+        addMessage()
     }
-    const onChangeHandler = (e:ChangeEvent<HTMLTextAreaElement>) => {
-
-        dispatch(updateMessageTextAC(e.target.value))
-        console.log(e.target.value)
+    const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        updateMessageText(e.target.value)
     }
 
     return (

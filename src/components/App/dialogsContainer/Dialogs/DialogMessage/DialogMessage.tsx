@@ -6,8 +6,8 @@ export type DialogMessagesType = {
     message: string
 }
 
-export const DialogMessage: React.FC<DialogMessagesType> = (props) => {
-    const {id, message} = props
+export const DialogMessage: React.FC<DialogMessagesType> = ({id, message}) => {
+
 
     return (
         <div className={classes.dialog}>{message}</div>

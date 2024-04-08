@@ -1,33 +1,26 @@
-import React, {ChangeEvent, createRef, RefObject} from 'react';
-import classes from "./MyPosts.module.css";
-// import {Post, PropsPostType} from "./Post/Post";
-import {TextField} from "../../../TextField/TextField";
-import {Post} from "./Post/Post";
-import {ActionsType, addPostAC, PostData, updatePostTextAC} from "../../../../redux/state/state";
+import React, {createRef, RefObject} from 'react';
+import {PostData} from "../../../../../redux/state/store";
+import { Post } from '../../myPostsContainer/MyPosts/Post/Post';
 
 
 type MyPostsPropsType = {
     posts: Array<PostData>
-    dispatch: (action: ActionsType) => void
     postValue: string
+    updatePostText: (text: string) => void
+    addPost: () => void
 }
 
-export const MyPosts: React.FC<MyPostsPropsType> = ({posts, dispatch, postValue}) => {
-
-    // const mappedPosts = posts.map(el => {
-    //     return <Post key={el.id} id={el.id} likesCount={el.likesCount} message={el.message}/>
-    // })
+export const MyPosts: React.FC<MyPostsPropsType> = ({posts, postValue, addPost, updatePostText}) => {
 
     const newPost: RefObject<any> = createRef()
 
     const addPostHandler = () => {
+        addPost()
 
-        dispatch(addPostAC())
     }
     const onChangeHandler = () => {
-
         const text = newPost.current.value
-        dispatch(updatePostTextAC(text))
+        updatePostText(text)
     }
 
     return (

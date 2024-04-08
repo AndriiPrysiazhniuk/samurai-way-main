@@ -1,7 +1,6 @@
 import React from 'react';
 import classes from './Product.module.css'
-import {ProductCardType} from "../../../../redux/state/state";
-
+import {ProductCardType} from "../../../../redux/state/store";
 
 
 export const ProductCard = ({id, price, src, description, title}: ProductCardType) => {
@@ -11,7 +10,8 @@ export const ProductCard = ({id, price, src, description, title}: ProductCardTyp
         <div className={classes.products} id="shop">
             <button className={classes.del}>delete</button>
             <img
-                 src={'https://hk-media.apjonlinecdn.com/catalog/product/cache/b3b166914d87ce343d4dc5ec5117b502/p/r/probook_440_g8_2_.png'}/>
+                src={'https://hk-media.apjonlinecdn.com/catalog/product/cache/b3b166914d87ce343d4dc5ec5117b502/p/r/probook_440_g8_2_.png'}
+                alt={''}/>
             <p className={classes.productName}>{title}</p>
             <p className={classes.productDescription}>{description}</p>
             <div>
