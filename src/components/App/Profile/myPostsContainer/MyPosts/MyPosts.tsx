@@ -1,9 +1,9 @@
 import React, {createRef, RefObject} from 'react';
 import {PostData} from "../../../../../redux/state/store";
-import { Post } from '../../myPostsContainer/MyPosts/Post/Post';
+import {Post} from '../../myPostsContainer/MyPosts/Post/Post';
 
 
-type MyPostsPropsType = {
+export type MyPostsPropsType = {
     posts: Array<PostData>
     postValue: string
     updatePostText: (text: string) => void
@@ -22,7 +22,7 @@ export const MyPosts: React.FC<MyPostsPropsType> = ({posts, postValue, addPost, 
         const text = newPost.current.value
         updatePostText(text)
     }
-
+    console.log('posts', posts)
     return (
         <div>
             <h3>My posts</h3>
@@ -36,6 +36,7 @@ export const MyPosts: React.FC<MyPostsPropsType> = ({posts, postValue, addPost, 
             </div>
             <div>
                 {posts.map(el => {
+
                     return <Post key={el.id} id={el.id} likesCount={el.likesCount} message={el.message}/>
                 })}
             </div>

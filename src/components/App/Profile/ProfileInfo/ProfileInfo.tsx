@@ -1,10 +1,9 @@
 import React from "react";
-import {StoreContext} from "../../../StoreContext";
 
 
 export const ProfileInfo = () => {
 
-    return <StoreContext.Consumer>
+    return <div>
         {
             (store: any) => {
                 const state = store.getState();
@@ -20,5 +19,5 @@ export const ProfileInfo = () => {
                 </div>
             }
         }
-    </StoreContext.Consumer>
+    </div>
 }

@@ -23,7 +23,7 @@ export const App = () => {
                 <Route path='/my-products'
                        render={() => <MyProducts/>}/>
                 <Route path='/dialogs'
-                       render={() => <DialogsContainer/>}/>
+                       render={() => <DialogsContainer />}/>
                 <Route path='/profile'
                        render={() => <Profile/>}/>
 

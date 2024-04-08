@@ -6,7 +6,7 @@ import {
 import {DialogItem} from "../Dialogs/DialogItem/DialogItem";
 import {DialogMessage} from "../Dialogs/DialogMessage/DialogMessage";
 
-type DialogsPropsType = {
+export type DialogsPropsType = {
     dialogs: DialogsDataPageType
     addMessage: () => void
     updateMessageText: (message: string) => void
