@@ -9,10 +9,6 @@ import {ActionsType} from "../../redux/state/store";
 import {AppRootStateType} from "./../../redux/state/redux-store";
 import {DialogsContainer} from "./dialogsContainer/DialogsContainer";
 
-type PropsStateType = {
-    state: AppRootStateType
-    dispatch: (action: ActionsType) => void
-}
 export const App = () => {
     return (
 

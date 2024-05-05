@@ -28,13 +28,9 @@ export const dialogsReducer = (state: DialogsDataPageType = initialState, action
                 id: 6,
                 message: state.dialogsMessage
             } as DialogMessagesType
-
-            state.messages.push(myMessage)
-            state.dialogsMessage = ''
-            return state
+            return {...state, messages: [...state.messages, myMessage], dialogsMessage: ''};
         case 'UPDATE-MESSAGE-TEXT':
-            state.dialogsMessage = action.newMessageText;
-            return state
+            return {...state, dialogsMessage: action.newMessageText}
         default:
             return state
     }

@@ -25,13 +25,13 @@ export const Dialogs: React.FC<DialogsPropsType> = ({dialogs, updateMessageText,
         <div className={classes.dialogs}>
             <div className={classes.dialogsItems}>
                 {dialogs.dialogs.map(el => {
-                    return <DialogItem name={el.name} id={el.id}/>
+                    return <DialogItem key={el.id} name={el.name} id={el.id}/>
                 })}
                 {/*<MappedDialogsName dialogsNamesData={dialogsNamesData}/>*/}
             </div>
             <div className={classes.messages}>
                 {dialogs.messages.map(el => {
-                    return <DialogMessage id={el.id} message={el.message}/>
+                    return <DialogMessage key={el.id} id={el.id} message={el.message}/>
                 })}
                 <div>
                     <textarea

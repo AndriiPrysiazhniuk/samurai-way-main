@@ -3,9 +3,9 @@ import {MyPosts, MyPostsPropsType} from "./MyPosts/MyPosts";
 import React from "react";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
+import {AppRootStateType} from "../../../../redux/state/redux-store";
 
-const mapStateToProps = (state: any) => {
-    console.log('state', state)
+const mapStateToProps = (state: AppRootStateType) => {
     return {
         posts: state.profile.posts,
         postValue: state.profile.newPostText
@@ -19,8 +19,6 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         updatePostText: (newMessage: string) => {
             dispatch(updatePostTextAC(newMessage))
         }
-
     }
 }
-
 export const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)

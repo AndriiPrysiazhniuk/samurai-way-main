@@ -7,8 +7,6 @@ export type DialogMessagesType = {
 }
 
 export const DialogMessage: React.FC<DialogMessagesType> = ({id, message}) => {
-
-
     return (
         <div className={classes.dialog}>{message}</div>
     )

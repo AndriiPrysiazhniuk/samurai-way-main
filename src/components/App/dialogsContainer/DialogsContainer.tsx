@@ -10,38 +10,15 @@ import {connect} from "react-redux";
 import {AppRootStateType} from "../../../redux/state/redux-store";
 import {Dispatch} from "redux";
 
-// type DialogsContainerPropsType = {
-//     dialogs: DialogsDataPageType
-//     dispatch: (action: ActionsType) => void
-// }
-//
-// export const DialogsContainer: React.FC<any> = () => {
-//
-//     return <StoreContext.Consumer>
-//         {(store: any) => {
-//             const addNewMessageHandler = () => {
-//                 store.dispatch(addMessageAC())
-//             }
-//             const updateMessageTextHandler = (message: string) => {
-//                 store.dispatch(updateMessageTextAC(message))
-//             }
-//
-//             return <Dialogs updateMessageText={updateMessageTextHandler}
-//                             addMessage={addNewMessageHandler}
-//                             dialogs={store.getState().dialogs}/>
-//         }}
-//     </StoreContext.Consumer>
-// };
-
-const mapStateToProps = (state: DialogsPropsType) => {
+const mapStateToProps = (state: AppRootStateType) => {
     return {
-        dialogs: state.dialogs
+        dialogs: state.dialogs,
     }
 }
 const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
         updateMessageText: (message: string) => {
-            dispatch(updatePostTextAC(message))
+            dispatch(updateMessageTextAC(message))
         },
         addMessage: () => {
             dispatch(addMessageAC())
